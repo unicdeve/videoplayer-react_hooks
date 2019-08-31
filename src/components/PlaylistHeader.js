@@ -3,7 +3,7 @@ import StyledPlaylistHeader from "./styles/StyledPlaylistHeader";
 import StyledJourney from "./styles/StyledJourney";
 
 
-const PlaylistHeader = {active, total} => {
+const PlaylistHeader = ({active, total}) => {
     return (
         <StyledPlaylistHeader>
             <p>{active.title}</p>

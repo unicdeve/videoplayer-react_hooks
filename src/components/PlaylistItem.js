@@ -1,15 +1,12 @@
 import React from 'react';
-import StyledPlaylist from "./styles/StyledPlaylist";
+import StyledPlaylistItem from "./styles/StyledPlaylistItem";
 
-
-const PlaylistItem = ({video, active, played}) => {
-    return (
-        <StyledPlaylist active={active} played={played}>
-            <div className={"wbn-player__video-nr"}>{video.num}</div>
-            <div className={"wbn-player__video-name"}>{video.title}</div>
-            <div className={"wbn-player__video-time"}>{video.duration}</div>
-        </StyledPlaylist>
-    )
-}
+const PlaylistItem = ({video, active, played}) => (
+    <StyledPlaylistItem active={active} played={played}>
+        <div className={"wbn-player__video-nr"}>{video.num}</div>
+        <div className={"wbn-player__video-name"}>{video.title}</div>
+        <div className={"wbn-player__video-time"}>{video.duration}</div>
+    </StyledPlaylistItem>
+)
 
 export default PlaylistItem;
