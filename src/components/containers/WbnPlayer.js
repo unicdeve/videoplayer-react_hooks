@@ -29,14 +29,19 @@ const themeLight = {
 const WbnPlayer = ({ match, history, location }) => {
 
     const videos = JSON.parse(document.querySelector('[name="videos"]').value);
+    const savedLocalStorageVideos = JSON.parse(localStorage.getItem(`${videos.playlistId}`));
 
     const [state, setState] = useState({
-        videos: videos.playlist,
-        activeVideo: videos.playlist[0],
-        nightMode: true,
-        playlistId: videos.playlistId,
+        videos: savedLocalStorageVideos ? savedLocalStorageVideos.playlist : videos.playlist,
+        activeVideo: savedLocalStorageVideos ? savedLocalStorageVideos.activeVideo : videos.playlist[0],
+        nightMode: savedLocalStorageVideos ? savedLocalStorageVideos.nightMode : true,
+        playlistId: savedLocalStorageVideos ? savedLocalStorageVideos.playlistId : videos.playlistId,
         autoplay: false
     })
+
+    useEffect(() => {
+        localStorage.setItem(`${state.playlistId}`, JSON.stringify({ ...state }));
+    }, [state])
 
     useEffect(() => {
         const videoId = match.params.activeVideo;
